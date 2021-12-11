@@ -47,6 +47,7 @@ $router->set404(function() {
     header('HTTP/1.1 404 Not Found');
     
     echo "shit doesnt exist homie";
+    // 404
 });
 
 $twig->addGlobal('metadata', $metadata);
