@@ -1,1 +1,13 @@
-index bitch
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <title>{{ metadata.og_context.title|escape }}</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% include 'header.twig' %}
+        index bitch
+        {% include 'footer.twig' %}
+    </body>
+</html>

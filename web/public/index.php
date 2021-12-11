@@ -20,6 +20,10 @@ $userinfo = [
 ];
 
 $metadata = [
+    "og_context"        => [
+        "title"            => "SubRocks 2011",
+    ],
+
     "user_context"      => [
         "user_username"    => "mynamejeff9000",
         "user_bio"         => "hi my names jeff and this is my bio",
