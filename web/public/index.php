@@ -10,7 +10,6 @@ require '../app/protected/formatting.php';
 $router = new \Bramus\Router\Router();
 $formatter = new \Misc\Formatter\Formatter();
 $fetch = new \Database\Fetch\Fetcher($__db);
-$insert = new \Database\Insert\Inserter($__db);
 $loader = new \Twig\Loader\FilesystemLoader('twig/templates');
 $twig = new \Twig\Environment($loader, 
 	['debug' => true] // disable manually in production
@@ -26,9 +25,6 @@ $userinfo = [
 $metadata = [
     "og_context"        => [
         "title"            => "SubRocks 2011",
-        "description"      => "SubRocks is a site dedicated to bring back the 2011 layout of YouTube.",
-        "url"              => "localhost",
-        "picture"          => "asd.png",
     ],
 
     "user_context"      => [
@@ -54,15 +50,7 @@ $requested_queries = [
     "recommended_for_you_index" => array(),
 ];
 
-$router->get('/', function() use ($twig, $__db, $requested_queries, $formatter, $insert) { 
-    /*
-        $insert->insert_row(
-            "fuck", 
-            array("a1", "a2", "a3", "a4"), 
-            array("fuckyostup", "qweqwe23453453456", "werwerwer43gf", "poopityscoop")
-        );
-    */ 
-
+$router->get('/', function() use ($twig, $__db, $requested_queries, $formatter) { 
     $recommended_videos = $__db->prepare("SELECT * FROM videos ORDER BY rand() DESC LIMIT 4");
 	$recommended_videos->execute();
 	
@@ -81,6 +69,8 @@ $router->get('/', function() use ($twig, $__db, $requested_queries, $formatter, 
 	}
 
 	$requested_queries["recommended_for_you_index"]["results"] = $recommended_videos->rowCount();
+    echo highlight_string("<?php\n\$data =\n" . var_export($requested_queries, true) . ";\n?>");
+
     echo $twig->render('index.twig', []);
 });
 
