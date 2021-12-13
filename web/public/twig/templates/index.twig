@@ -2,12 +2,23 @@
 <html>
     <head>
         {% block head %}
-        <title>{{ metadata.og_context.title|escape }}</title>
+            <title>{{ metadata.og_context.title|escape }}</title>
+            <meta property="og:title" content="{{ metadata.og_context.title|escape }}" />
+            <meta property="og:description" content="{{ metadata.og_context.description|escape }}" />
+            <meta property="og:url" content="{{ metadata.og_context.url|escape }}" />
+            <meta property="og:image" content="{{ metadata.og_context.picture|escape }}" />
+            <link href="/yt/cssbin/www-core.css" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
-        {% include 'header.twig' %}
-        index bitch
-        {% include 'footer.twig' %}
+        <div class="www-container-main">
+            <div class="www-header-container">
+                {% include 'header.twig' %}
+            </div>
+
+            <div class="www-footer-container">
+                {% include 'footer.twig' %}
+            </div>
+        </div>
     </body>
 </html>

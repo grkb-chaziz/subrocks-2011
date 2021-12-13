@@ -1,0 +1,11 @@
+.www-container-main {
+	width: 970px;
+	margin: auto;
+}
+
+body {
+	margin-top: 0;
+	padding-top: 0;
+	font: 12px arial, sans-serif;
+	word-wrap: break-word;
+}
